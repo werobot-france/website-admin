@@ -27,7 +27,7 @@
 				</v-card-text>
 				<v-card-actions>
 					<v-spacer />
-					<v-btn color=primary flat>
+					<v-btn color=primary flat @click="reply(viewMessage.author_email)">
 						Répondre
 					</v-btn>
 					<v-btn color=error flat @click="deleteMsg(viewMessage.id)">
@@ -68,6 +68,9 @@ export default {
 				this.viewDialog = false
 				this.messages = this.messages.filter(message => message.id != id)
 			})
+		},
+		reply (to) {
+			window.location.href = "mailto:" + to
 		}
 	}
 }
