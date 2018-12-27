@@ -3,7 +3,9 @@ export const state = () => ({
         enabled: false,
         text: '',
         color: ''
-    }
+    },
+    title: '',
+    isLoading: false
 })
 
 export const mutations = {
@@ -20,5 +22,11 @@ export const mutations = {
             text: '',
             color: ''
         }
+    },
+    SET_TITLE: function (state, payload) {
+        state.title = payload
+    },
+    SET_LOADING: function (state, payload) {
+        state.isLoading = payload
     }
 }

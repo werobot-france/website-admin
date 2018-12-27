@@ -5,11 +5,7 @@
 <script>
 export default {
     mounted () {
-        this.$store.commit('ADD_ALERT', {
-            color: 'success',
-            text: 'Hello world!'
-        })
-        console.log('dqsdqsd')
+		this.$store.commit('SET_TITLE', 'Dashboard')
     }
 }
 </script>

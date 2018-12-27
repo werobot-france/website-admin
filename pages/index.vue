@@ -34,7 +34,7 @@ export default {
 				var url = new URL(url_string)
 				if (url.searchParams.get("password") != null){
 					localStorage.setItem("password", url.searchParams.get("password"));
-					this.verifyKey(localStorage.getItem("password"))
+					this.verifyKey()
 				}
 			}
 		}
@@ -49,8 +49,15 @@ export default {
 			this.$apitator.get('/auth/info', {withAuth: true}).then(() => {
 				localStorage.setItem("haveBeenAuth", true)
 				this.$router.push("/dashboard")
+				this.$store.commit('ADD_ALERT', {
+					color: 'success',
+					text: 'Mot de passe enregistré !'
+				})
 			}).catch(() => {
-				alert("mové mdp, dsl, vous ne passseré pas!")
+				this.$store.commit('ADD_ALERT', {
+					color: 'error',
+					text: 'Vous ne passerez pas !'
+				})
             })		
 		}
 	}
