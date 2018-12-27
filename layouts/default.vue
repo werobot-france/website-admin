@@ -38,7 +38,7 @@
         </v-btn>
         <v-list>
           <v-list-tile
-            @click="uploadPhotoDialog = true">
+            @click="$refs.uploader.open()">
             <v-list-tile-action>
               <v-icon>add_photo_alternate</v-icon>
             </v-list-tile-action>
@@ -70,14 +70,17 @@
       </v-container>
     </v-content>
     <GlobalSnackbar />
+    <ImageUploader ref="uploader" />
   </v-app>
 </template>
 
 <script>
   import GlobalSnackbar from '../components/GlobalSnackbar'
+  import ImageUploader from '../components/ImageUploader'
   export default {
     components: {
-      GlobalSnackbar
+      GlobalSnackbar,
+      ImageUploader
     },
     head() {
         return {
