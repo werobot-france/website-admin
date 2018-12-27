@@ -36,7 +36,8 @@ module.exports = {
   */
   plugins: [
     '@/plugins/vuetify',
-    '@/plugins/apitator'
+    '@/plugins/apitator',
+    '@/plugins/clipboard'
   ],
 
   /*

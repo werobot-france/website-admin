@@ -22,7 +22,7 @@ export default {
         enabled: false
     }),
     watch: {
-        '$store.state.alert.enabled': function (value) {
+        '$store.state.alert.enabled': function (value) {            
             this.enabled = value
         }
     }
