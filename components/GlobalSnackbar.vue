@@ -2,18 +2,12 @@
     <v-snackbar
       v-model="enabled"
       bottom
-      right
+      left
       :color="$store.state.alert.color"
+        @click="$store.commit('REMOVE_ALERT')"
       multi-line>
        {{ $store.state.alert.text }}
-      <v-btn
-        dark
-        flat
-        @click="$store.commit('REMOVE_ALERT')"
-      >
-        Close
-      </v-btn>
-    </v-snackbar>
+      </v-snackbar>
 </template>
 
 <script>

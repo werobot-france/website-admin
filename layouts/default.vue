@@ -2,7 +2,8 @@
   <v-app dark>
     <v-navigation-drawer
       v-model="drawer"
-      fixed
+      absolute
+      temporary
       app
     >
       <v-list>
@@ -59,7 +60,7 @@
       </v-menu>
     </v-toolbar>
     <v-content>
-      <v-container>
+      <v-container fluid>
         <nuxt v-show="!$store.state.isLoading" />
         <v-layout justify-center align-item style="height:20em" v-show="$store.state.isLoading">
           <v-progress-circular
