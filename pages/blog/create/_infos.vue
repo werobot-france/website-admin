@@ -42,13 +42,17 @@
         <p class="headline">Prévisualisation:</p>
         <v-textarea solo auto-grow label="Contenu" v-model="post.content"></v-textarea>
       </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex xs10>
-      </v-flex>
-      <v-flex xs2>
-        <v-btn color="success" flat @click='createPost()'>Valider</v-btn>
-      </v-flex>
+            <v-btn
+                large
+                color="success"
+                fab
+                fixed
+                right
+                bottom
+                @click='createPost()'
+            >
+                <v-icon>check</v-icon>
+            </v-btn>
     </v-layout>
   </v-container>
 </template>
