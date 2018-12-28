@@ -15,7 +15,7 @@
       </v-flex>
       <v-flex xs6 thumbnailsC @click="modal0 = true">
         <v-img :src="post.image" @click="changeThumbnail()" class="thumbnails"></v-img>
-        <v-dialog ref="dialog" v-model="modal0" persistent lazy width="500px">
+        <v-dialog ref="dialog" v-model="modal0" lazy width="500px">
           <v-list>
           </v-list>
         </v-dialog>
@@ -27,7 +27,7 @@
         color="primary"
         ></v-checkbox>
         <v-textarea outline label="Description" v-model="post.description" v-if="editDescription"></v-textarea>
-        <v-dialog ref="dialog" v-model="modal" :return-value.sync="date" persistent lazy width="290px">
+        <v-dialog ref="dialog" v-model="modal" :return-value.sync="date" lazy width="290px">
           <v-text-field slot="activator" v-model="post.created_at" label="date" prepend-icon="event"
                         readonly></v-text-field>
           <v-date-picker v-model="date" width="290" class="mt-3">
