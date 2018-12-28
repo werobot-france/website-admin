@@ -2,7 +2,7 @@
   <v-container>
     <v-btn block large color="success" to="/blog/create">Creer un nouvel article</v-btn>
     <v-layout row wrap align-center justify-center>
-    <v-flex xs5 v-for="post in posts">
+    <v-flex xs6 v-for="post in posts" pa-2>
       <v-card style="margin-top:25px; min-height: 26em;" :to="'/blog/' + post.id" :key="post.id">
         <v-img class="white--text" height="200px" :src="post.image">
           <v-container fill-height fluid>
