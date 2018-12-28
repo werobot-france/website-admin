@@ -14,7 +14,7 @@
                 <v-text-field v-model="post.title" label="Titre" width="70px">
                 </v-text-field>
             </v-flex>
-            <v-flex xs6> 
+            <v-flex  md6 xs12> 
                 <v-img :src="post.image" @click="changeThumbnail()" class="thumbnails"></v-img>
                 <v-dialog ref="dialog" v-model="modal0" lazy width="500px">
                     <v-card class='pr-3 pl-3'>
@@ -25,7 +25,7 @@
                     </v-card>
                 </v-dialog>
             </v-flex>
-            <v-flex xs6 align-content-end pa-2>
+            <v-flex  md6 xs12 align-content-end pa-2>
                 <v-textarea outline label="Description" v-model="post.description">
                 </v-textarea>
                 <v-checkbox
@@ -44,11 +44,11 @@
             </v-flex>
         </v-layout>
         <v-layout mt-5 row wrap mb-5>
-            <v-flex xs6>
+            <v-flex  md6 xs12>
                 <p class="headline">Contenu:</p>
                 <v-textarea solo auto-grow label="Contenu" v-model="post.content"></v-textarea>
             </v-flex>
-            <v-flex xs6>
+            <v-flex  md6 xs12>
                 <p class="headline">Prévisualisation:</p>
                 <v-textarea solo auto-grow label="Contenu" v-model="post.content"></v-textarea>
             </v-flex>
