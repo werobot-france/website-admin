@@ -1,25 +1,24 @@
 <template>
-    <div>
-        <v-list three-line avatar>
-            <template v-for="post in posts">
-                <v-list-tile :key="post.id" :to="'/blog/' + post.id">
-                    <v-list-tile-avatar>
-                        <img :src="post.image" />
-                    </v-list-tile-avatar>
-                    <v-list-tile-content>
-                        <v-list-tile-title v-text="post.title" />
-                        <v-list-tile-sub-title>
-                            <span class='text--primary'>{{ post.created_at }}</span>
-                        </v-list-tile-sub-title>
-                        <v-list-tile-sub-title>
-                            {{ post.description }}
-                        </v-list-tile-sub-title>
-                    </v-list-tile-content>
-                </v-list-tile>
-                <v-divider :key="post.id + '_divider'" />
-            </template>
-        </v-list>
-    </div>
+    <v-container>
+        <v-btn block large color="success" to="/blog/create">Creer un nouvel article</v-btn>
+        <v-card v-for="post in posts" style="margin-bottom:25px;" :to="'/blog/' + post.id">
+            <v-img class="white--text" height="200px" :src="post.image">
+                <v-container fill-height fluid>
+                    <v-layout fill-height>
+                        <v-flex xs12 align-end flexbox>
+                            <span class="headline">{{ post.title }}</span>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+            </v-img>
+            <v-card-title>
+                <div>
+                    <span class="grey--text">{{ post.created_at }}</span><br>
+                    <span>{{ post.description }}</span>
+                </div>
+            </v-card-title>
+        </v-card>
+    </v-container>
 </template>
 
 <script>
