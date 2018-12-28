@@ -16,8 +16,12 @@
       <v-flex xs6 thumbnailsC @click="modal0 = true">
         <v-img :src="post.image" @click="changeThumbnail()" class="thumbnails"></v-img>
         <v-dialog ref="dialog" v-model="modal0" lazy width="500px">
-          <v-list>
-          </v-list>
+          <v-card class='pr-3 pl-3'>
+              <v-card-title class="body-2">Url de l'image:</v-card-title>
+              <v-card-content>
+              <v-text-field color="primary" v-model="post.image"></v-text-field>
+              </v-card-content>
+          </v-card>
         </v-dialog>
       </v-flex>
       <v-flex xs6 align-content-end pa-2>
