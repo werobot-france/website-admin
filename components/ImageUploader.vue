@@ -106,28 +106,24 @@ export default {
         },
         save: function () {
             this.enabled = false
+            let data = {image: this.url}
             if (this.url == '' && this.image.url !== '') {
-                let data = new FormData();
+                data = new FormData();
                 data.append('image', this.image.file);
-
-                this.$apitator.post('/image-upload', data, {withAuth: true}).then(response => {
-                    console.log(response.data.data.url)
-                    this.toCopy = response.data.data.url
-                    this.clipboardDialog = true
-                    /*
-                    this.$clipboard(response.data.data.url)
-                    this.$store.commit('ADD_ALERT', {
-                        color: 'success',
-                        text: "L'url a été copié dans le presse papier"
-                    })
-                    */
-                })
-            } else {
-                this.$store.commit('ADD_ALERT', {
-                    color: 'success',
-                    text: "L'url a été copié dans le presse papier"
-                })
             }
+            this.$apitator.post('/image-upload', data, {withAuth: true}).then(response => {
+                this.resetFile()
+                this.url = ''
+                console.log(response.data.data.url)
+                this.toCopy = response.data.data.url
+                this.clipboardDialog = true
+            }).catch(() => {
+                this.resetFile()
+                this.$store.commit('ADD_ALERT', {
+                    color: 'error',
+                    text: "Erreur pendant l'upload"
+                })
+            })
         },
         copy: function () {
             this.clipboardDialog = false
