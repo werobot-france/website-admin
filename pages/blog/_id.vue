@@ -98,7 +98,6 @@
                 this.$apitator.get("/post/?identifier=" + this.post.identifier).then((response) => {
                     var posts = response.data.data.posts
                     posts = posts.filter(post => post.locale == this.locale)
-                    console.log(posts[0])
                     if(posts[0] == undefined) {
                         this.$router.push("/blog/create/" + JSON.stringify({locale: this.locale, identifier: this.post.identifier, id: this.post.id}))
                     }
