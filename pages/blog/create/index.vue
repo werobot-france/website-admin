@@ -21,8 +21,12 @@
         </v-dialog>
       </v-flex>
       <v-flex xs6 align-content-end pa-2>
-        <v-textarea outline label="Description" v-model="post.description">
-        </v-textarea>
+        <v-checkbox
+        v-model="editDescription"
+        label="Personaliser la description"
+        color="primary"
+        ></v-checkbox>
+        <v-textarea outline label="Description" v-model="post.description" v-if="editDescription"></v-textarea>
         <v-dialog ref="dialog" v-model="modal" :return-value.sync="date" persistent lazy width="290px">
           <v-text-field slot="activator" v-model="post.created_at" label="date" prepend-icon="event"
                         readonly></v-text-field>
@@ -61,6 +65,7 @@
       locales: ["fr", "en"],
       date: new Date().toISOString().substr(0, 10),
       modal0: false,
+      editDescription: false,
       modal: false
     }),
     created() {
