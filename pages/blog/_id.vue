@@ -52,14 +52,44 @@
                 <p class="headline">Prévisualisation:</p>
                 <v-textarea solo auto-grow label="Contenu" v-model="post.content"></v-textarea>
             </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs8>
-            </v-flex>
-            <v-flex xs4>
-                <v-btn color="success" flat @click='editPost()'>Valider</v-btn>
-                <v-btn color="error" flat @click='deletePost()'>Supprimer</v-btn>
-            </v-flex>
+            <v-dialog width="300px">
+            <v-btn
+                large
+                slot="activator"
+                style="transform: translateY(-100px)"
+                color="error"
+                fab
+                fixed
+                right
+                bottom
+            >
+                <v-icon>delete</v-icon>
+        </v-btn>
+            <v-card>
+                <v-card-title>Êtes vous sur de vouloir supprimer cet article?</v-card-title>
+                <v-btn color="red" block @click="deletePost()">Oui</v-btn>
+            </v-card>
+            </v-dialog>
+            <v-btn
+                large
+                color="error"
+                fab
+                fixed
+                right
+                bottom
+                @click='deletePost()'
+            ></v-btn>
+            <v-btn
+                large
+                color="success"
+                fab
+                fixed
+                right
+                bottom
+                @click='editPost()'
+            >
+                <v-icon>check</v-icon>
+            </v-btn>
         </v-layout>
     </v-container>
 </template>

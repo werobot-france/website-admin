@@ -1,19 +1,6 @@
 <template>
   <v-container>
     <v-layout row wrap align-center justify-center>
-    <!-- <v-flex xs3 pt-4>
-      <v-select
-        :items="locales"
-        label="Langue"
-        solo
-        color="primary"
-        v-model="locale"
-        >
-      </v-select>
-    </v-flex>
-    <v-flex xs9>
-    <v-btn block large color="success" >Creer un nouvel article</v-btn>
-    </v-flex> -->
     <v-flex md6 v-for="post in posts" pa-2 v-show="post.locale == locale" :key="post.id">
       <v-card style="margin-top:25px; min-height: 26em;" :to="'/blog/' + post.id" :key="post.id">
         <v-img class="white--text" height="200px" :src="post.image">
