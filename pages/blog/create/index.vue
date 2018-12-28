@@ -31,13 +31,12 @@
         color="primary"
         ></v-checkbox>
         <v-textarea outline label="Description" v-model="post.description" v-if="editDescription"></v-textarea>
-        <v-dialog ref="dialog" v-model="modal" :return-value.sync="date" lazy width="290px">
-          <v-text-field slot="activator" v-model="post.created_at" label="date" prepend-icon="event"
-                        readonly></v-text-field>
-          <v-date-picker v-model="date" width="290" class="mt-3">
+        <v-dialog ref="dialog" v-model="modal" lazy width="290px">
+          <v-text-field slot="activator" v-model="post.created_at" label="date" prepend-icon="event" readonly></v-text-field>
+          <v-date-picker v-model="post.created_at" width="290" class="mt-3">
             <v-spacer></v-spacer>
             <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
-            <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+            <v-btn flat color="primary" @click="$refs.dialog.save(post.created_at)">OK</v-btn>
           </v-date-picker>
         </v-dialog>
       </v-flex>
@@ -67,7 +66,6 @@
     data: () => ({
       post: {},
       locales: ["fr", "en"],
-      date: new Date().toISOString().substr(0, 10),
       modal0: false,
       editDescription: false,
       modal: false
@@ -77,6 +75,9 @@
     },
     methods: {
       createPost() {
+        if (this.post.created_at != null && this.post.created_at != undefined) {
+          this.post.created_at += " 00:00:00"
+        }
         this.$apitator.post("/post/", this.post, {withAuth: true}).then(() => {
           this.$store.commit("ADD_ALERT", {text: "Article créée!", color: "success"})
           this.$router.push("/blog")

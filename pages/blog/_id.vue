@@ -28,12 +28,17 @@
             <v-flex xs6 align-content-end pa-2>
                 <v-textarea outline label="Description" v-model="post.description">
                 </v-textarea>
-                <v-dialog ref="dialog" v-model="modal" :return-value.sync="date" lazy width="290px">
+                <v-checkbox
+                v-model="editDate"
+                label="Changer la date"
+                color="primary"
+                ></v-checkbox>
+                <v-dialog ref="dialog" v-model="modal" :return-value.sync="post.created_at" lazy width="290px" v-if="editDate">
                     <v-text-field slot="activator" v-model="post.created_at" label="date" prepend-icon="event" readonly></v-text-field>
-                    <v-date-picker v-model="date" width="290" class="mt-3">
+                    <v-date-picker v-model="post.created_at" width="290" class="mt-3">
                         <v-spacer></v-spacer>
                         <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
-                        <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+                        <v-btn flat color="primary" @click="$refs.dialog.save(post.created_at)">OK</v-btn>
                     </v-date-picker>
                 </v-dialog>
             </v-flex>
@@ -65,16 +70,18 @@
             locales: ["fr", "en"],
             id: 0,
             post: [],
-            date: new Date().toISOString().substr(0, 10),
             modal0: false,
             modal: false,
-            locale: ""
+            editDate: false,
+            locale: "",
+            firstDate: ""
         }),
         created() {
             this.id = this.$route.params.id
             this.$apitator.get("/post/" + this.id).then((response) => {
                 this.post = response.data.data.post
                 this.locale = this.post.locale
+                this.firstDate = this.post.created_at
                 this.$store.commit('SET_TITLE', "Blog - " + this.post.title)
             })
         },
@@ -89,6 +96,11 @@
                 })
             },
             editPost() {
+                if (this.editDate && this.post.created_at != this.firstDate) {
+                    this.post.created_at += " 00:00:00"
+                }else {
+                    this.post.created_at = this.firstDate
+                }
                 this.$apitator.put("/post/" + this.id, this.post, { withAuth: true }).then(() => {
                     this.$store.commit("ADD_ALERT", { text: "Article édité!", color: "success" })
                     this.$router.push("/blog")
