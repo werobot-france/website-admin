@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout row wrap align-center justify-center>
-    <v-flex xs3 pt-4>
+    <!-- <v-flex xs3 pt-4>
       <v-select
         :items="locales"
         label="Langue"
@@ -12,8 +12,8 @@
       </v-select>
     </v-flex>
     <v-flex xs9>
-    <v-btn block large color="success" to="/blog/create">Creer un nouvel article</v-btn>
-    </v-flex>
+    <v-btn block large color="success" >Creer un nouvel article</v-btn>
+    </v-flex> -->
     <v-flex xs6 v-for="post in posts" pa-2 v-show="post.locale == locale" :key="post.id">
       <v-card style="margin-top:25px; min-height: 26em;" :to="'/blog/' + post.id" :key="post.id">
         <v-img class="white--text" height="200px" :src="post.image">
@@ -33,6 +33,50 @@
         </v-card-title>
       </v-card>
     </v-flex>
+    <v-speed-dial
+      direction="top"
+      transition="scale-transition"
+      fixed
+      right
+      bottom
+      style="transform: translateY(-100px)"
+    >
+      <v-btn
+        slot="activator"
+        large
+        color="red"
+        fab
+      >
+      <v-icon>flag</v-icon>
+      </v-btn>
+      <v-btn
+        fab
+        medium
+        color="grey darken-3"
+        @click="locale='fr'"
+      >
+        FR
+      </v-btn>
+      <v-btn
+        fab
+        medium
+        color="grey darken-3"
+        @click="locale='en'"
+      >
+        EN
+      </v-btn>
+    </v-speed-dial>
+      <v-btn
+        large
+        color="success"
+        fab
+        fixed
+        right
+        bottom
+        to="/blog/create"
+      >
+      <v-icon>add</v-icon>
+      </v-btn>
     </v-layout>
   </v-container>
 </template>
