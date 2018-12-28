@@ -64,6 +64,7 @@
       infos: [],
       modal0: false,
       editDescription: false,
+      firstDate: "",
       modal: false
     }),
     created() {
@@ -72,12 +73,14 @@
       this.post.identifier = this.infos.identifier
       this.$apitator.get("/post/" + this.infos.id).then((response) => {
         this.post.image = response.data.data.post.image
+        this.post.created_at = response.data.data.post.created_at
+        this.firstDate = this.post.created_at
       })
       this.post.locale = this.infos.locale
     },
     methods: {
       createPost() {
-        if(this.post.created_at != null && this.post.created_at != undefined) {
+        if(this.post.created_at != this.firstDate) {
           this.post.created_at += " 00:00:00"
         }
         this.$apitator.post("/post/", this.post, {withAuth: true}).then(() => {
