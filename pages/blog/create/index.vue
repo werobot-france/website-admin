@@ -42,14 +42,15 @@
       </v-flex>
     </v-layout>
     <v-layout mt-5 row wrap mb-5>
-      <v-flex md6 xs12>
-        <p class="headline">Contenu:</p>
-        <v-textarea solo auto-grow label="Contenu" v-model="post.content"></v-textarea>
-      </v-flex>
-      <v-flex md6 sm12>
-        <p class="headline">Prévisualisation:</p>
-        <v-textarea solo auto-grow label="Contenu" v-model="post.content"></v-textarea>
-      </v-flex>
+      <!--<v-flex md6 xs12>-->
+        <!--<p class="headline">Contenu:</p>-->
+        <!--<v-textarea solo auto-grow label="Contenu" v-model="post.content"></v-textarea>-->
+      <!--</v-flex>-->
+      <!--<v-flex md6 sm12>-->
+        <!--<p class="headline">Prévisualisation:</p>-->
+        <!--<v-textarea solo auto-grow label="Contenu" v-model="post.content"></v-textarea>-->
+      <!--</v-flex>-->
+      <MarkdownEditor ref="editor" />
       <v-btn
         color="success"
         fab
@@ -65,7 +66,9 @@
 </template>
 
 <script>
+  import MarkdownEditor from "../../../components/MarkdownEditor"
   export default {
+    components: {MarkdownEditor},
     data: () => ({
       post: {},
       locales: ["fr", "en"],
@@ -81,6 +84,7 @@
         if (this.post.created_at != null && this.post.created_at != undefined) {
           this.post.created_at += " 00:00:00"
         }
+        this.post.content = this.$refs.editor.getContent()
         this.$apitator.post("/post/", this.post, {withAuth: true}).then(() => {
           this.$store.commit("ADD_ALERT", {text: "Article créée!", color: "success"})
           this.$router.push("/blog")

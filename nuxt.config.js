@@ -36,6 +36,7 @@ module.exports = {
   */
   plugins: [
     '@/plugins/vuetify',
+    '@/plugins/mavonEditor',
     '@/plugins/apitator',
     '@/plugins/clipboard'
   ],
@@ -54,7 +55,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      
+
     }
   }
 }

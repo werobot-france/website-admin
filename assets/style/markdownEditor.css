@@ -1,0 +1,78 @@
+.editor-container {
+    width: 100%;
+}
+
+v-note-wrapper {
+    max-width: 100% !important;
+}
+
+.theme--dark .CodeMirror{
+    background-color: transparent !important;
+    border-color: rgba(255, 255, 255, 0.5);
+    color: white !important;
+}
+.theme--dark .editor-toolbar a.active, .editor-toolbar a {
+    color: white !important;
+}
+.theme--dark .editor-toolbar a.active, .editor-toolbar a:hover {
+    background-color: transparent !important;
+}
+.theme--dark span.CodeMirror-selectedtext {
+    background-color: transparent !important;
+}
+.theme--dark .CodeMirror-cursor{
+    border-color: white !important;
+}
+.theme--dark .editor-preview .editor-preview-side {
+    background-color: black !important;
+}
+
+.movon-editor-custom {
+    margin-bottom: 1.5em !important;
+    z-index: 0 !important;
+}
+
+.movon-editor-custom.v-note-wrapper .v-note-op .v-left-item {
+    display: none !important;
+}
+
+.movon-editor-custom.v-note-wrapper .v-note-op .v-right-item {
+    max-width: 100% !important;
+}
+
+.theme--dark .movon-editor-custom.v-note-wrapper {
+    background: #303030 !important;
+}.theme--dark .movon-editor-custom.v-note-wrapper.fullscreen {
+     background: #303030 !important;
+     z-index: 999 !important;
+ }
+.theme--dark .movon-editor-custom textarea {
+    color: #FFFF !important;
+}
+.theme--dark .movon-editor-custom .v-show-content {
+    background-color: #303030 !important;
+    color: #FFFF !important;
+}
+.theme--dark .movon-editor-custom .v-note-op {
+    background-color: #303030 !important;
+    color: #FFFF !important;
+}.theme--dark .movon-editor-custom .op-icon-divider {
+     border-left-color: #757575 !important;
+ }
+.theme--dark .movon-editor-custom .op-icon{
+    transition: opacity 0.2s;
+}
+.theme--dark .movon-editor-custom .op-icon:hover, .theme--dark .movon-editor-custom .op-icon.selected{
+    background-color: #303030 !important;
+    opacity: 0.8 !important;
+    transition: opacity 0.2s;
+    color: #757575 !important;
+}
+.theme--dark .movon-editor-custom .v-note-navigation-wrapper, .theme--dark .movon-editor-custom .v-show-content-html  {
+    background-color: #303030 !important;
+    color: #FFFF !important;
+}
+.theme--dark .movon-editor-custom .hljs, .theme--dark .movon-editor-custom pre, .theme--dark .movon-editor-custom blockquote {
+    background-color: #303030 !important;
+    color: #FFFF !important;
+}
