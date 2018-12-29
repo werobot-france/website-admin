@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-layout wrap row width="100%">
-      <v-flex xs3>
+      <v-flex xs12 md6>
         <v-select
           :items="locales"
           label="Langue"
@@ -9,6 +9,14 @@
           v-model="locale"
           @change="changeLocale()"
         ></v-select>
+      </v-flex>
+      <v-flex xs12 md6 class="text-xs-right">
+        <v-btn
+          color="error"
+          outline
+          @click='deletePost()'
+        >
+          <v-icon left>delete</v-icon> Delete</v-btn>
       </v-flex>
       <v-flex xs12 row wrap>
         <v-text-field v-model="post.title" label="Titre" width="70px">
@@ -47,31 +55,11 @@
     <v-layout mt-5 row wrap mb-5>
       <MarkdownEditor ref="editor"/>
       <v-dialog width="300px">
-        <v-btn
-          large
-          slot="activator"
-          style="transform: translateY(-100px)"
-          color="error"
-          fab
-          fixed
-          right
-          bottom
-        >
-          <v-icon>delete</v-icon>
-        </v-btn>
         <v-card>
           <v-card-title>Êtes vous sur de vouloir supprimer cet article?</v-card-title>
           <v-btn color="red" block @click="deletePost()">Oui</v-btn>
         </v-card>
       </v-dialog>
-      <v-btn
-        color="error"
-        fab
-        fixed
-        right
-        bottom
-        @click='deletePost()'
-      ></v-btn>
       <v-btn
         color="success"
         fab
