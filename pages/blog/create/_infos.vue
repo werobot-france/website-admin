@@ -5,26 +5,27 @@
         <v-text-field v-model="post.title" label="Titre" width="70px">
         </v-text-field>
       </v-flex>
-      <v-flex  md6 xs12 thumbnailsC @click="modal0 = true">
+      <v-flex md6 xs12 thumbnailsC @click="modal0 = true">
         <v-img :src="post.image" @click="changeThumbnail()" class="thumbnails"></v-img>
         <v-dialog ref="dialog" v-model="modal0" lazy width="500px">
           <v-card class='pr-3 pl-3'>
-              <v-card-title class="body-2">Url de l'image:</v-card-title>
-              <v-card-content>
+            <v-card-title class="body-2">Url de l'image:</v-card-title>
+            <v-card-content>
               <v-text-field color="primary" v-model="post.image"></v-text-field>
-              </v-card-content>
+            </v-card-content>
           </v-card>
         </v-dialog>
       </v-flex>
-      <v-flex  md6 xs12 align-content-end pa-2>
+      <v-flex md6 xs12 align-content-end pa-2>
         <v-checkbox
-        v-model="editDescription"
-        label="Personaliser la description"
-        color="primary"
+          v-model="editDescription"
+          label="Personaliser la description"
+          color="primary"
         ></v-checkbox>
         <v-textarea outline label="Description" v-model="post.description" v-if="editDescription"></v-textarea>
         <v-dialog ref="dialog" v-model="modal" :return-value.sync="post.created_at" lazy width="290px">
-          <v-text-field slot="activator" v-model="post.created_at" label="date" prepend-icon="event" readonly></v-text-field>
+          <v-text-field slot="activator" v-model="post.created_at" label="date" prepend-icon="event"
+                        readonly></v-text-field>
           <v-date-picker v-model="post.created_at" width="290" class="mt-3">
             <v-spacer></v-spacer>
             <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
@@ -34,31 +35,25 @@
       </v-flex>
     </v-layout>
     <v-layout mt-5 row wrap mb-5>
-      <v-flex  md6 xs12>
-        <p class="headline">Contenu:</p>
-        <v-textarea solo auto-grow label="Contenu" v-model="post.content"></v-textarea>
-      </v-flex>
-      <v-flex  md6 xs12>
-        <p class="headline">Prévisualisation:</p>
-        <v-textarea solo auto-grow label="Contenu" v-model="post.content"></v-textarea>
-      </v-flex>
-            <v-btn
-                large
-                color="success"
-                fab
-                fixed
-                right
-                bottom
-                @click='createPost()'
-            >
-                <v-icon>check</v-icon>
-            </v-btn>
+      <MarkdownEditor ref="editor"/>
+      <v-btn
+        color="success"
+        fab
+        fixed
+        right
+        bottom
+        @click='createPost()'
+      >
+        <v-icon>check</v-icon>
+      </v-btn>
     </v-layout>
   </div>
 </template>
 
 <script>
+  import MarkdownEditor from "../../../components/MarkdownEditor"
   export default {
+    components: {MarkdownEditor},
     data: () => ({
       post: {},
       infos: [],
@@ -80,9 +75,10 @@
     },
     methods: {
       createPost() {
-        if(this.post.created_at != this.firstDate) {
+        if (this.post.created_at != this.firstDate) {
           this.post.created_at += " 00:00:00"
         }
+        this.post.content = this.$refs.editor.getContent()
         this.$apitator.post("/post/", this.post, {withAuth: true}).then(() => {
           this.$store.commit("ADD_ALERT", {text: "Article créée!", color: "success"})
           this.$router.push("/blog")
