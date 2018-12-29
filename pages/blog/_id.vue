@@ -11,12 +11,18 @@
         ></v-select>
       </v-flex>
       <v-flex xs12 md6 class="text-xs-right">
+        <v-dialog width="300px">
         <v-btn
           color="error"
           outline
-          @click='deletePost()'
+          slot="activator"
         >
           <v-icon left>delete</v-icon> Delete</v-btn>
+          <v-card>
+            <v-card-title>Êtes vous sur de vouloir supprimer cet article?</v-card-title>
+            <v-btn color="red" block @click="deletePost()">Oui</v-btn>
+          </v-card>
+        </v-dialog>
       </v-flex>
       <v-flex xs12 row wrap>
         <v-text-field v-model="post.title" label="Titre" width="70px">
@@ -54,12 +60,6 @@
     </v-layout>
     <v-layout mt-5 row wrap mb-5>
       <MarkdownEditor ref="editor"/>
-      <v-dialog width="300px">
-        <v-card>
-          <v-card-title>Êtes vous sur de vouloir supprimer cet article?</v-card-title>
-          <v-btn color="red" block @click="deletePost()">Oui</v-btn>
-        </v-card>
-      </v-dialog>
       <v-btn
         color="success"
         fab
