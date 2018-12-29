@@ -16,7 +16,8 @@
         subfield: true,
         navigation: true,
         htmlcode: true,
-        fullscreen: true
+        fullscreen: true,
+        autofocus: true
       }"/>
   </div>
 </template>
