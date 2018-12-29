@@ -60,7 +60,7 @@
       </v-menu>
     </v-toolbar>
     <v-content>
-      <v-container fluid>
+      <v-container>
         <nuxt v-show="!$store.state.isLoading" />
         <v-layout justify-center align-item style="height:20em" v-show="$store.state.isLoading">
           <v-progress-circular

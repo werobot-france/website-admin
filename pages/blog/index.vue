@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <v-layout row wrap justify-space-between align-content-space-between>
       <v-flex md6 v-for="post in posts" pa-2 v-show="post.locale == locale" :key="post.id">
         <v-card :to="'/blog/' + post.id" :key="post.id" classs="blog" hover height="24em">
@@ -21,22 +21,22 @@
           </v-card-title>
         </v-card>
       </v-flex>
-      <v-speed-dial direction="top" transition="scale-transition" fixed right bottom style="transform: translateY(-100px)">
-        <v-btn slot="activator" large color="red" fab>
+      <v-speed-dial direction="top" transition="scale-transition" fixed right bottom style="transform: translateY(-75px)">
+        <v-btn slot="activator" color="red" fab sm>
           <v-icon>flag</v-icon>
         </v-btn>
-        <v-btn fab medium color="grey darken-3" @click="locale='fr'">
+        <v-btn fab small color="grey darken-3" @click="locale='fr'">
           FR
         </v-btn>
-        <v-btn fab medium color="grey darken-3" @click="locale='en'">
+        <v-btn fab small color="grey darken-3" @click="locale='en'">
           EN
         </v-btn>
       </v-speed-dial>
-      <v-btn large color="success" fab fixed right bottom to="/blog/create">
+      <v-btn sm color="success" fab fixed right bottom to="/blog/create">
         <v-icon>add</v-icon>
       </v-btn>
     </v-layout>
-  </v-container>
+  </div>
 </template>
 
 <script>

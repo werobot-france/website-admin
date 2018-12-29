@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <div>
     <v-layout wrap row width="100%">
       <v-flex xs12 row wrap>
         <v-text-field v-model="post.title" label="Titre" width="70px">
@@ -54,7 +54,7 @@
                 <v-icon>check</v-icon>
             </v-btn>
     </v-layout>
-  </v-container>
+  </div>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <div>
     <v-layout wrap row width="100%">
       <v-flex xs3>
         <v-select
@@ -51,7 +51,6 @@
         <v-textarea solo auto-grow label="Contenu" v-model="post.content"></v-textarea>
       </v-flex>
       <v-btn
-        large
         color="success"
         fab
         fixed
@@ -62,7 +61,7 @@
       <v-icon>check</v-icon>
     </v-btn>
     </v-layout>
-  </v-container>
+  </div>
 </template>
 
 <script>
