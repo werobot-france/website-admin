@@ -1,3 +1,0 @@
-RewriteEngine On
-RewriteRule ^index.html$ http://localhost:3001/ [L,P]
-RewriteRule ^(.*)$ http://localhost:3001/$1 [L,P]
