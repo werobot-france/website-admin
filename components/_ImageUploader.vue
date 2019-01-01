@@ -96,7 +96,7 @@ export default {
 					this.image.file = files[0]
 				})
 			} else {
-                this.resetFile()
+        this.resetFile()
 			}
         },
         resetFile: function () {

@@ -3,7 +3,6 @@
     <v-navigation-drawer
       v-model="drawer"
       absolute
-      temporary
       app
     >
       <v-list>
@@ -39,12 +38,12 @@
         </v-btn>
         <v-list>
           <v-list-tile
-            @click="$refs.uploader.open()">
+            @click="$refs.gallery.open()">
             <v-list-tile-action>
-              <v-icon>add_photo_alternate</v-icon>
+              <v-icon>insert_photo</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>Upload photo</v-list-tile-title>
+              <v-list-tile-title>Gallerie</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-list-tile
@@ -53,7 +52,7 @@
               <v-icon>exit_to_app</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>Logout</v-list-tile-title>
+              <v-list-tile-title>Se déconnecter</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
@@ -61,8 +60,8 @@
     </v-toolbar>
     <v-content>
       <v-container>
-        <nuxt v-show="!$store.state.isLoading" />
-        <v-layout justify-center align-item style="height:20em" v-show="$store.state.isLoading">
+        <nuxt v-show="!($store.state.isLoading && $store.state.loadingType === 'normal')" />
+        <v-layout justify-center align-item style="height:20em" v-show="$store.state.isLoading && $store.state.loadingType === 'normal'">
           <v-progress-circular
             indeterminate
             color="primary"
@@ -71,17 +70,17 @@
       </v-container>
     </v-content>
     <GlobalSnackbar />
-    <ImageUploader ref="uploader" />
+    <ImageNavigation ref="gallery" />
   </v-app>
 </template>
 
 <script>
   import GlobalSnackbar from '../components/GlobalSnackbar'
-  import ImageUploader from '../components/ImageUploader'
+  import ImageNavigation from '../components/ImageNavigation'
   export default {
     components: {
       GlobalSnackbar,
-      ImageUploader
+      ImageNavigation
     },
     head() {
         return {
@@ -89,8 +88,8 @@
         }
     },
     mounted() {
-      this.$apitator.setGlobalCallbackOnLoading(value => {
-        this.$store.commit('SET_LOADING', value)
+      this.$apitator.setGlobalCallbackOnLoading((value, type) => {
+        this.$store.commit('SET_LOADING', [value, type])
       })
       if (localStorage.getItem('haveBeenAuth') && localStorage.getItem('password') != null) {
         this.$apitator.setAuthorizationToken(localStorage['password'])
@@ -103,7 +102,8 @@
         items: [
           { icon: 'apps', title: 'Dashboard', to: '/dashboard' },
           { icon: 'messages', title: 'Messages', to: '/messages' },
-          { icon: 'library_books', title: 'Blog', to: '/blog' }
+          { icon: 'library_books', title: 'Blog', to: '/blog' },
+          { icon: 'add_photo_alternate', title: 'Importer des images', to: '/import-images' }
         ]
       }
     }

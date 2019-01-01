@@ -1,24 +1,23 @@
 <template>
-    <v-snackbar
-      v-model="enabled"
-      bottom
-      left
-      :color="$store.state.alert.color"
-        @click="$store.commit('REMOVE_ALERT')"
-      multi-line>
-       {{ $store.state.alert.text }}
-      </v-snackbar>
+  <v-snackbar
+    v-model="enabled"
+    :color="$store.state.alert.color"
+    right
+    bottom
+    @click="$store.commit('REMOVE_ALERT')">
+    {{ $store.state.alert.text }}
+  </v-snackbar>
 </template>
 
 <script>
-export default {
+  export default {
     data: () => ({
-        enabled: false
+      enabled: false
     }),
     watch: {
-        '$store.state.alert.enabled': function (value) {            
-            this.enabled = value
-        }
+      '$store.state.alert.enabled': function (value) {
+        this.enabled = value
+      }
     }
-}
+  }
 </script>
