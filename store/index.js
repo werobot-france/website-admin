@@ -1,6 +1,7 @@
 export const state = () => ({
   alert: {
     enabled: false,
+    location: 'global',
     text: '',
     color: ''
   },
@@ -14,14 +15,16 @@ export const mutations = {
     state.alert = {
       enabled: true,
       text: payload.text,
-      color: payload.color
+      color: payload.color,
+      location: payload.location === undefined ? 'global' : payload.location
     }
   },
   REMOVE_ALERT: function (state) {
     state.alert = {
       enabled: false,
       text: '',
-      color: ''
+      color: '',
+      location: 'global'
     }
   },
   SET_TITLE: function (state, payload) {

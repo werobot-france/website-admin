@@ -7,10 +7,13 @@
           </v-layout>
       </v-container>
     </v-content>
+    <GlobalSnackbar />
   </v-app>
 </template>
 
 <script>
+  import GlobalSnackbar from "../components/GlobalSnackbar"
   export default {
+    components: {GlobalSnackbar}
   }
 </script>
