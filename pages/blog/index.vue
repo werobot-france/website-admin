@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-layout row wrap justify-space-between align-content-space-between>
-      <v-flex md6 v-for="post in posts" pa-2 v-show="post.locale == locale" :key="post.id">
+      <v-flex xs12 sm6 md4 v-for="post in posts" pa-2 v-show="post.locale == locale" :key="post.id">
         <v-card :to="'/blog/' + post.id" :key="post.id" classs="blog" hover height="24em">
           <v-img class="white--text" height="200px" :src="post.image" gradient="to bottom, rgba(0,0,0, .2), #424242"
             dark>

@@ -54,7 +54,7 @@
                     </v-img>
                     <v-list>
                       <v-list-tile
-                        @click="copyAndFinish(image)"
+                        @click="finish(image)"
                       >
                         <v-list-tile-title>Use</v-list-tile-title>
                       </v-list-tile>
@@ -160,6 +160,9 @@
         this.fetchPhotos()
         this.enabled = true
       },
+      close: function () {
+        this.enabled = false
+      },
       fetchPhotos: function () {
         this.$apitator.get('/image?page=' + this.currentPage + '&per_page=' + this.perPage, {
           withAuth: true,
@@ -176,13 +179,19 @@
           })
         })
       },
-      copyAndFinish: function (image) {
-        this.$clipboard(image.medium)
+      finish: function (image) {
         this.enabled = false
-        this.$store.commit('ADD_ALERT', {
-          color: 'success',
-          text: 'Copié dans le presse papier!'
-        })
+        if (this.$store.state.galleryFromPost === false) {
+          this.$clipboard(image.medium)
+          this.$store.commit('ADD_ALERT', {
+            color: 'success',
+            text: 'Copié dans le presse papier!'
+          })
+        } else {
+          this.$store.commit('SET_GALLERY_FINISHED', true)
+          this.$store.commit('SET_GALLERY_STATE', false)
+          this.$store.commit('SET_GALLERY_PAYLOAD', image.medium)
+        }
       },
       destroy: function () {
         this.$apitator.delete('/image/' + this.toDeleteImage.id, {withAuth: true, loadingType: 'button'}).then(() => {

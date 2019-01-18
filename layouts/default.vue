@@ -95,6 +95,15 @@
         this.$apitator.setAuthorizationToken(localStorage['password'])
       }
     },
+    watch: {
+      '$store.state.galleryState': function (value) {
+        if (value) {
+          this.$refs.gallery.open()
+        } else {
+          this.$refs.gallery.close()
+        }
+      }
+    },
     data() {
       return {
         uploadPhotoDialog: false,

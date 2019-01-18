@@ -7,10 +7,24 @@ export const state = () => ({
   },
   title: '',
   isLoading: false,
-  loadingType: ''
+  loadingType: '',
+  galleryState: false,
+  galleryHasFinished: false,
+  galleryPayload: '',
+  galleryFromPost: false
 })
 
 export const mutations = {
+  SET_GALLERY_STATE: function (state, payload) {
+    state.galleryState = payload
+    state.galleryFromPost = true
+  },
+  SET_GALLERY_FINISHED: function (state, payload) {
+    state.galleryHasFinished = payload
+  },
+  SET_GALLERY_PAYLOAD: function (state, payload) {
+    state.galleryPayload = payload
+  },
   ADD_ALERT: function (state, payload) {
     state.alert = {
       enabled: true,
