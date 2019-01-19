@@ -50,14 +50,10 @@
           this.isLoading = false
         })
       } else {
-        if (localStorage.getItem("password") === null) {
-          let url = new URL(window.location.href)
-          if (url.searchParams.get("password") != null) {
-            localStorage.setItem("password", url.searchParams.get("password"));
-            this.verifyKey()
-          } else {
-            this.isLoading = false
-          }
+        let url = new URL(window.location.href)
+        if (url.searchParams.get("password") != null) {
+          localStorage.setItem("password", url.searchParams.get("password"));
+          this.verifyKey()
         } else {
           this.isLoading = false
         }
