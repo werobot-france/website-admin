@@ -40,20 +40,20 @@
     }),
     mounted() {
       this.isLoading = true
-      if (localStorage.getItem("haveBeenAuth")) {
-        this.$apitator.setAuthorizationToken(localStorage["password"])
-        this.$apitator.get('/auth/info', {withAuth: true}).then(() => {
-          this.$router.push("/dashboard")
-        }).catch(() => {
-          this.$store.commit('ADD_ALERT', {color: 'error', text: 'Vous devez réentrer le mot de passe'})
-        }).then(() => {
-          this.isLoading = false
-        })
+      let url = new URL(window.location.href)
+      if (url.searchParams.get("password") != null) {
+        localStorage.setItem("password", url.searchParams.get("password"));
+        this.verifyKey()
       } else {
-        let url = new URL(window.location.href)
-        if (url.searchParams.get("password") != null) {
-          localStorage.setItem("password", url.searchParams.get("password"));
-          this.verifyKey()
+        if (localStorage.getItem("haveBeenAuth")) {
+          this.$apitator.setAuthorizationToken(localStorage["password"])
+          this.$apitator.get('/auth/info', {withAuth: true}).then(() => {
+            this.$router.push("/dashboard")
+          }).catch(() => {
+            this.$store.commit('ADD_ALERT', {color: 'error', text: 'Vous devez réentrer le mot de passe'})
+          }).then(() => {
+            this.isLoading = false
+          })
         } else {
           this.isLoading = false
         }
