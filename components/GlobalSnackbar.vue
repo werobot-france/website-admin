@@ -20,6 +20,11 @@
     data: () => ({
       enabled: false
     }),
+    created () {
+      if (this.$store.state.alert.enabled) {
+        this.enabled = true
+      }
+    },
     watch: {
       '$store.state.alert.enabled': function (value) {
         this.enabled = value

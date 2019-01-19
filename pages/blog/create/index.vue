@@ -83,7 +83,8 @@
         title: '',
         description: '',
         content: '',
-        image: ''
+        image: '',
+        locale: ''
       },
       locales: ["fr", "en"],
       modal0: false,
@@ -95,11 +96,18 @@
     },
     methods: {
       createPost() {
-        if (this.post.created_at != null && this.post.created_at != undefined) {
-          this.post.created_at += " 00:00:00"
+        let body = {}
+        body.title = this.post.title
+        body.image = this.post.image
+        body.content = this.$refs.editor.getContent()
+        body.locale = this.post.locale
+        if (this.editDescription) {
+          body.description = this.post.description
         }
-        this.post.content = this.$refs.editor.getContent()
-        this.$apitator.post("/post/", this.post, {withAuth: true}).then(() => {
+        if (this.post.created_at != null && this.post.created_at !== undefined) {
+          body.created_at = this.post.created_at + " 00:00:00"
+        }
+        this.$apitator.post("/post/", body, {withAuth: true}).then(() => {
           this.$store.commit("ADD_ALERT", {text: "Article créée!", color: "success"})
           this.$router.push("/blog")
         })

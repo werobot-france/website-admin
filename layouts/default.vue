@@ -61,7 +61,7 @@
     <v-content>
       <v-container>
         <nuxt v-show="!($store.state.isLoading && $store.state.loadingType === 'normal')" />
-        <v-layout justify-center align-item style="height:20em" v-show="$store.state.isLoading && $store.state.loadingType === 'normal'">
+        <v-layout justify-center align-item align-center style="height:20em" v-show="$store.state.isLoading && $store.state.loadingType === 'normal'">
           <v-progress-circular
             indeterminate
             color="primary"
@@ -114,6 +114,17 @@
           { icon: 'library_books', title: 'Blog', to: '/blog' },
           { icon: 'add_photo_alternate', title: 'Importer des images', to: '/import-images' }
         ]
+      }
+    },
+    methods: {
+      logout() {
+        localStorage.removeItem('haveBeenAuth')
+        localStorage.removeItem('password')
+        this.$store.commit('ADD_ALERT', {
+          color: 'success',
+          text: 'Vous vous êtes déconnecté'
+        })
+        this.$router.push('/')
       }
     }
   }
