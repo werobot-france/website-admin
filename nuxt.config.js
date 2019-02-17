@@ -45,6 +45,11 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    ['nuxt-env', {
+      keys: [
+        'API_ENDPOINT'
+      ]
+    }]
   ],
 
   /*
