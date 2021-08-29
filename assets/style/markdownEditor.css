@@ -1,3 +1,4 @@
+
 .editor-container {
     width: 100%;
 }
@@ -6,11 +7,11 @@ v-note-wrapper {
     max-width: 100% !important;
 }
 
-.theme--dark .CodeMirror{
+/* .theme--dark .CodeMirror{
     background-color: transparent !important;
     border-color: rgba(255, 255, 255, 0.5);
     color: white !important;
-}
+} */
 .theme--dark .editor-toolbar a.active, .editor-toolbar a {
     color: white !important;
 }
@@ -47,6 +48,7 @@ v-note-wrapper {
      z-index: 999 !important;
  }
 .theme--dark .movon-editor-custom textarea {
+    background-color: #303030 !important;
     color: #FFFF !important;
 }
 .theme--dark .movon-editor-custom .v-show-content {
@@ -61,6 +63,9 @@ v-note-wrapper {
  }
 .theme--dark .movon-editor-custom .op-icon{
     transition: opacity 0.2s;
+}
+.theme--dark .movon-editor-custom .content-input-wrapper {
+    background-color: #303030 !important;
 }
 .theme--dark .movon-editor-custom .op-icon:hover, .theme--dark .movon-editor-custom .op-icon.selected{
     background-color: #303030 !important;
