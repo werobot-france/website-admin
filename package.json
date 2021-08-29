@@ -5,7 +5,7 @@
   "author": "Thingmill &lt;contact@thingmill.fr&gt;",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "dev": "cross-env API_ENDPOINT=http://localhost:8000 NODE_ENV=development nodemon server/index.js --watch server",
     "build": "cross-env API_ENDPOINT=https://api.werobot.fr nuxt build",
     "deploy": "git pull origin master && npm install && npm run build && cp .htaccess ./dist",
     "start": "cross-env NODE_ENV=production API_ENDPOINT=https://api.werobot.fr PORT=3001 node server/index.js",
