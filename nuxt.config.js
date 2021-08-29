@@ -1,7 +1,8 @@
 const pkg = require('./package')
 
 module.exports = {
-  mode: 'spa',
+  telemetry: false,
+  ssr: false,
 
   /*
   ** Headers of the page
@@ -45,11 +46,6 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    ['nuxt-env', {
-      keys: [
-        'API_ENDPOINT'
-      ]
-    }]
   ],
 
   /*
