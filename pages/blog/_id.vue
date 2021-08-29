@@ -47,6 +47,16 @@
           label="Changer la date"
           color="primary"
         ></v-checkbox>
+        <v-select
+          :items="['default', 'small', 'medium', 'large']"
+          label="Mode de couverture"
+          solo
+          v-model="post.cover_mode"
+        ></v-select>
+        <v-text-field
+          label="Offset de couverture"
+          v-model="post.cover_offset"
+        ></v-text-field>
         <v-dialog ref="dialog" v-model="modal" :return-value.sync="post.created_at" lazy width="290px" v-if="editDate">
           <v-text-field slot="activator" v-model="post.created_at" label="date" prepend-icon="event"
                         readonly></v-text-field>
@@ -95,6 +105,7 @@
         this.post = response.data.data.post
         this.locale = this.post.locale
         this.firstDate = this.post.created_at
+        this.post.cover_mode = this.post.cover_mode ?? 'default'
         this.$refs.editor.setContent(this.post.content)
         this.$store.commit('SET_TITLE', "Blog - " + this.post.title)
       })
@@ -116,9 +127,13 @@
           this.post.created_at = this.firstDate
         }
         this.post.content = this.$refs.editor.getContent()
+        this.post.cover_mode = this.post.cover_mode === 'default' ? null : this.post.cover_mode
         this.$apitator.put("/post/" + this.id, this.post, {withAuth: true}).then(() => {
-          this.$store.commit("ADD_ALERT", {text: "Article édité!", color: "success"})
-          this.$router.push("/blog")
+          console.log('Post saved!')
+          setTimeout(() => {
+            this.$store.commit("ADD_ALERT", {text: "Article édité!", color: "success"})
+          }, 500)
+          //this.$router.push("/blog")
         })
       },
       changeLocale() {
