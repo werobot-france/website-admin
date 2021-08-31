@@ -48,7 +48,7 @@
           color="primary"
         ></v-checkbox>
         <v-select
-          :items="['default', 'small', 'medium', 'large']"
+          :items="['default', 'small', 'medium', 'large', 'full']"
           label="Mode de couverture"
           solo
           v-model="post.cover_mode"
