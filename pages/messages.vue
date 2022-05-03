@@ -7,7 +7,9 @@
 			<v-list-tile v-for="msg in messages" :key="msg.id" @click="viewDialog = true; viewMessage = msg">
 				<v-list-tile-content>
 					<v-list-tile-title v-text="msg.subject" />
-					<v-list-tile-sub-title><span class='text--primary'>{{ msg.author_name }}</span> &mdash; {{ msg.created_at }}</v-list-tile-sub-title>
+					<v-list-tile-sub-title>
+						<span class='text--primary'>{{ msg.author_name }}</span> &mdash; {{ msg.created_at }}
+					</v-list-tile-sub-title>
 				</v-list-tile-content>
 			</v-list-tile>
 		</v-list>
