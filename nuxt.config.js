@@ -4,6 +4,10 @@ module.exports = {
   telemetry: false,
   ssr: false,
 
+  env: {
+    apiEndpoint: process.env.API_ENDPOINT
+  },
+
   /*
   ** Headers of the page
   */
